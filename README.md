@@ -1,4 +1,4 @@
-Hidden Markov Model (HMM) and Part of Speech (POS) Tagging
+Hidden Markov Model and Part of Speech Tagging
 ========================================================
 
 ## Introduction
@@ -17,7 +17,7 @@ This repository includes demo codes on how to use hidden Markov model (HMM) to p
 2. Place all data in the same directory as the codes (HMM.java and POS.java)
 3. Compile using command: javac POS.java HMM.java
 4. Run using commnad: java POS
-5. Enter lambda (0~1) at the prompted line for parameter configuration
+5. Enter the probability smoothing coefficient lambda (0~1) at the prompted line for parameter configuration
 6. See the POS tagged sentences for testing.txt in "report.txt" (at the same location as the codes)
 
 ## Contributors
