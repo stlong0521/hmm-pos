@@ -203,8 +203,8 @@ class HMM {
 		for(int i=0;i<M;i++) {
 			String wordTag = line[0] + " " + tagSet[i];
 			String tagTag = tagSet[i] + " " + "START";
-			double probWordTag = probEmission.containsKey(wordTag)?probEmission.get(wordTag):Double.NEGATIVE_INFINITY;
-			double probTagTag = probTransition.containsKey(tagTag)?probTransition.get(tagTag):Double.NEGATIVE_INFINITY;
+			double probWordTag = probEmission.containsKey(wordTag)?probEmission.get(wordTag):0.0;
+			double probTagTag = probTransition.containsKey(tagTag)?probTransition.get(tagTag):0.0;
 			vScore[i][0] = Math.log(probWordTag) + Math.log(probTagTag);
 			backPTR[i][0] = -1;
 		}
@@ -216,8 +216,8 @@ class HMM {
 				for(int k=0;k<M;k++) {
 					String tagTag = tagSet[i] + " " + tagSet[k];
 					String wordTag = line[j] + " " + tagSet[i];
-					double probTagTag = probTransition.containsKey(tagTag)?probTransition.get(tagTag):Double.NEGATIVE_INFINITY;
-					double probWordTag = probEmission.containsKey(wordTag)?probEmission.get(wordTag):Double.NEGATIVE_INFINITY;
+					double probTagTag = probTransition.containsKey(tagTag)?probTransition.get(tagTag):0.0;
+					double probWordTag = probEmission.containsKey(wordTag)?probEmission.get(wordTag):0.0;
 					double score = vScore[k][j-1] + Math.log(probTagTag) + Math.log(probWordTag);
 					if(score>vScore[i][j]) {
 						vScore[i][j] = score;
@@ -232,7 +232,7 @@ class HMM {
 		int path[] = new int[N];
 		for(int i=0;i<M;i++) {
 			String tagTag = "END" + " " + tagSet[i];
-		       	double probTagTag = probTransition.containsKey(tagTag)?probTransition.get(tagTag):Double.NEGATIVE_INFINITY;	
+		       	double probTagTag = probTransition.containsKey(tagTag)?probTransition.get(tagTag):0.0;	
 			double score = vScore[i][N-1] + Math.log(probTagTag);
 			if(score>logProb) {
 				logProb = score;
